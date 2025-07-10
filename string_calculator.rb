@@ -20,6 +20,9 @@ class StringCalculator
     regex = Regexp.union(delimiters)
     nums = numbers.split(regex).map(&:to_i)
 
+    negatives = nums.select { |n| n < 0 }
+    raise "Negatives not allowed: #{negatives.join(", ")}" unless negatives.empty?
+
     nums.select { |n| n <= 1000 }.sum
   end
 end
